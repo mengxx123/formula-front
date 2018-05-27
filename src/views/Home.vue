@@ -1,7 +1,7 @@
 <template>
-    <my-page title="公式编辑器">
+    <my-page title="公式编辑器" :page="page">
         <div id="kfEditorContainer" class="kf-editor"></div>
-        <ui-raised-button class="btn" primary label="导出为 PNG 图片" @click="downloadPng" />
+        <!-- <ui-raised-button class="btn" primary label="导出为 PNG 图片" @click="downloadPng" /> -->
         <img :src="resultSrc" v-if="resultSrc">
     </my-page>
 </template>
@@ -13,7 +13,17 @@
     export default {
         data () {
             return {
-                resultSrc: null
+                resultSrc: null,
+                page: {
+                    menu: [
+                        {
+                            type: 'icon',
+                            icon: 'import_export',
+                            click: this.downloadPng,
+                            title: '导出为 PNG 图片'
+                        }
+                    ]
+                }
             }
         },
         mounted() {
